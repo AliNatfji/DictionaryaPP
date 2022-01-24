@@ -127,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ? getErrorWidget("Some Error",)
                   : cubit.state is NoWordSearchedState
                       ? getDictionaryFormWidget(context)
-                      : getLoadingWidget()),
+                      : Container()),
     );
   }
 }

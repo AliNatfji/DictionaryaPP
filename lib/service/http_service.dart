@@ -1,41 +1,19 @@
 import 'package:http/http.dart' as http;
 
-class HttpService
-{
-  var baseUrl = "https://api.dictionaryapi.dev/api/v2/entries/";
+class HttpService {
+  static const baseUrl = "https://api.dictionaryapi.dev/api/v2/entries/";
 
-   Future<http.Response> getRequest(endpoint) async
-  {
-    http.Response response;
+  static Future<http.Response?> getRequest(endPoint) async {
+    http.Response? response;
 
-    final url =Uri.parse("$baseUrl$endpoint");
-
-     response = await http.get(url);
-
+    final url = Uri.parse("$baseUrl$endPoint");
+    try {
+      response = await http.get(url);
+    }
+    on Exception catch (e)
+    {
+      print(e);
+    }
     return response;
-
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

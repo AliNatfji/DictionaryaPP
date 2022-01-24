@@ -13,24 +13,18 @@ class DictionaryCubit extends Cubit<DictionaryState> {
   final queryController = TextEditingController();
 
   Future getWordSearched() async {
-    emit(NoWordSearchedState());
+    emit(WordSearchingState());
     try {
-      final words =
-          await _repository.getWordsFromDictionary(queryController.text);
+      final words = await _repository.getWordsFromDictionary(queryController.text);
       if (words == null) {
-        //emit(WordSearchingState());
-        print('EEEEEEEEEEEEErroor');
+        print('ERORE');
         emit(ErrorState("There is some issue"));
       } else {
         print(words.toString());
-        //emit(WordSearchingState());
-        print('eeeeeeeeeelsssssss');
         emit(WordSearchedState(words));
         emit(NoWordSearchedState());
       }
     } on Exception catch (e) {
-      print('$e eeeeeeeeeeeeexcepppption');
-      //emit(WordSearchingState());
       emit(ErrorState(e.toString()));
     }
   }
